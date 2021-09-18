@@ -13,6 +13,7 @@ module.exports = {
         'orange-custom-1' :'#FFD6BA', //6
         'green-custom-1' : '#D9ED92', //7
         'green-custom-2' : '#99D98C', //8
+        'green-custom-3' : '#739492', //9
         'whi-custom-1' : 'E5E5E5' //background
       }
     }

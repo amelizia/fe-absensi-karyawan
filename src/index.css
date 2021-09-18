@@ -14,12 +14,12 @@ body {
 
 ::-moz-selection { /* Code for Firefox */
   color: whitesmoke;
-  background: #95A07E;
+  background: #739492;
 }
 
 ::selection {
   color: white;
-  background: #95A07E;
+  background: #739492;
 }
 
 code {
