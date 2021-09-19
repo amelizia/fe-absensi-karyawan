@@ -52,8 +52,8 @@ return (
                 </a>
             </li>
             </ul>
-            <div className="grid row-span-full gap-y-16 ml-6" onClick={logout}>
-                <a className="cursor-pointer row-start-6 row-end-7 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+            <div className="h-full flex flex-col justify-end ml-6 mb-5">
+                <a onClick={logout} className="cursor-pointer row-start-6 row-end-7 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                         Sign out</a>
             </div>
         </div>
