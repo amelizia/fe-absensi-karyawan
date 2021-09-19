@@ -49,7 +49,7 @@ const Login = () => {
 };
 
     return (
-        <div className="min-h-screen grid item-center md:grid-cols-2">
+        <div className="min-h-screen  bg-whi-custom-1 grid item-center md:grid-cols-2">
           <div className="bg-blue-custom-1 flex flex-col justify-center">
             <div className="ml-6 md:ml-10 lg:ml-16 text-white  ">
               <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold">Worker Attendance</h1>

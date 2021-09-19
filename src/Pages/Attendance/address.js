@@ -79,6 +79,7 @@
 //   }
 // }
 import React, { useState } from 'react';
+import axios from 'axios';
 import Geocode from "react-geocode";
 
   const Address = () => {
@@ -133,13 +134,26 @@ import Geocode from "react-geocode";
   }
 
   return (
-    <div className="App">
-      <button onClick={getLocation}>Your current location</button>
-      <p>{status}</p>
-      {lat && <a>{lat.toFixed(7)}</a>}
-      {lng && <a>, {lng.toFixed(7)}</a>}
-      {Add && <p>{Add}</p>}
-      {Tmpstmp && <p>{Tmpstmp}</p>}
+    <div className="text-center">
+      <button className="mb-6 font-bold text-2xl" onClick={getLocation}>Your current location</button>
+      <p className="font-semibold text-lg ">{status}</p>
+      {Tmpstmp && <p className="font-semibold text-lg ">{Tmpstmp}</p>}
+      {lat && <a className="font-semibold text-lg">{lat.toFixed(7)}</a>}
+      {lng && <a className="font-semibold text-lg">, {lng.toFixed(7)}</a>}
+      {Add && <p className="text-sm font-medium text-gray-600 ">({Add})</p>}
+    
+      <a className="group relative w-full flex justify-center mt-12">
+        <button type=""
+        className="py-2 px-4 border border-transparent text-sm tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+          Check-in
+      </button>
+      <button type=""
+        className="ml-12 py-2 px-4 border border-transparent text-sm tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+           Check-out
+      </button>
+      </a>
+
+
     </div>
   );
 }

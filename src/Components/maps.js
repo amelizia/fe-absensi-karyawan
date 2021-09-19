@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker  } from 'google-maps-react';
 
 const mapStyles = {
-  width: '100%',
-  height: '100%'
+  width: '30%',
+  height: '40%'
 };
 
 class Maps extends Component {
   constructor() {
     super();
     this.state = {
-      name: "React"
+      name: "React",
+      lat: 0,
+      lng: 0
     };
   }
 
@@ -37,5 +39,5 @@ class Maps extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDNjpHU_Fxjkx7q2mjCfoA2zU2f7EXTWoI&v&v=3.exp&libraries=geometry,drawing,places' //API belong to others resource
+  apiKey: 'AIzaSyAWa7-RTKOR7BulmJ1PWmDaJ9r2ZB8UqAs' //API belong to others resource
 })(Maps);

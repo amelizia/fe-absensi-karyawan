@@ -1,4 +1,4 @@
-import React, {useState}  from "react";
+import React from "react";
 import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Menu = () => {
@@ -39,8 +39,8 @@ return (
             </li>
             <li>
                 <a className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
-                    <Link to="/timesheet">
-                        Timesheet
+                    <Link to="/timesheets">
+                        Timesheets
                     </Link>
                 </a>
             </li>
