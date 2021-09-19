@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Menu from '../../Components/menu';
+import Menu from 'ln -s ../../../src/Components/menu';
+import Profile from 'ln -s ../../../src/Components/welcomeprofile';
 import Address from './address';
 import Geo from './geolocation';
 import Maps from '../../Components/maps';
-import Profile from '../../Components/welcomeprofile';
 
 const Attendance = () => {
     return (
