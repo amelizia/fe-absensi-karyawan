@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from '../../Components/menu';
-import Profile from '../../Components/welcomeprofile';
+import Menu from '../Components/menu';
+import Profile from '../Components/welcomeprofile';
 
 const Timesheet = () => {
     return (

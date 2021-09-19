@@ -5,7 +5,7 @@ import Attendance from "./Pages/Attendance/attendance"; //attendance
 import Timesheet from "./Pages/Timesheet/timesheet"; //timesheet page
 import Login from "./Pages/Login/login"; //login page
 import NotFound from "./Pages/404/404"; //404 not found
-import Mapss from "./Components/maps";
+import Mapss from "./Pages/Components/maps";
 
 function App() {
   return (
