@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Attendance from "./Pages/Attendance/attendance"; //attendance
-import Timesheet from "./Pages/timesheet/timesheet"; //timesheet page
+import Timesheet from "./Pages/Timesheet/timesheet"; //timesheet page
 import Login from "./Pages/Login/login"; //login page
 import NotFound from "./Pages/404/404"; //404 not found
 import Mapss from "./Components/maps";
