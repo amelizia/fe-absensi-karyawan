@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Menu from 'ln -s ../../../src/Components/menu';
-import Profile from 'ln -s ../../../src/Components/welcomeprofile';
+import Menu from 'ln -s ../../../src/Components/menu.js';
+import Profile from 'ln -s ../../../src/Components/welcomeprofile.js';
 import Address from './address';
 import Geo from './geolocation';
 import Maps from '../../Components/maps';
