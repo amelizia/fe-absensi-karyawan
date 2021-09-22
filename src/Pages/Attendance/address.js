@@ -137,19 +137,19 @@ import Geocode from "react-geocode";
   return (
     <div className="text-center">
       <button className="mb-6 font-bold 2xl:text-4xl md:text-2xl text-lg" onClick={getLocation}>Your current location</button>
-      <p className="font-semibold text-lg ">{status}</p>
-      {Tmpstmp && <p className="font-semibold text-lg ">{Tmpstmp}</p>}
-      {lat && <a className="font-semibold text-lg">{lat.toFixed(7)}</a>}
-      {lng && <a className="font-semibold text-lg">, {lng.toFixed(7)}</a>}
-      {Add && <p className="text-sm font-medium text-gray-600 ">({Add})</p>}
+      <p className="font-semibold md:text-lg text-base">{status}</p>
+      {Tmpstmp && <p className="font-semibold md:text-lg text-base ">{Tmpstmp}</p>}
+      {lat && <a className="font-semibold md:text-lg text-base">{lat.toFixed(7)}</a>}
+      {lng && <a className="font-semibold md:text-lg text-base">, {lng.toFixed(7)}</a>}
+      {Add && <p className="sm:text-sm text-xs font-medium text-gray-600 ">({Add})</p>}
     
       <a className="group relative w-full flex justify-center mt-12">
         <button type=""
-        className="py-2 px-4 border border-transparent text-sm tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+        className="py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
           Check-in
       </button>
       <button type=""
-        className="ml-12 py-2 px-4 border border-transparent text-sm tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+        className="ml-12 py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
            Check-out
       </button>
       </a>
