@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const Menu = () => {
+const Topbar = () => {
+  const [TopbarOpen, setTopbarOpen] = React.useState(false);
     const History = useHistory();
     
     const logout = (e) => {
@@ -24,14 +25,25 @@ const Menu = () => {
 
 return (
     <div className="content">
-     {/* Side-Menu */}
-    <div className="min-h-screen flex flex-row float-left">
-        <div className="flex flex-col bg-blue-custom-1 overflow-hidden pr-6"> 
-            <div className="font-sans text-white justify-left ml-6 mt-6 mb-6">
-                <h1 className="text-2xl font-bold">Worker Attendance</h1>
-                <h2 className="text-xl">Tracking System</h2>
-            </div>
-            <ul className="flex flex-col py-4 ml-6">
+         {/* <!-- mobile menu bar --> */}
+  <div class="bg-blue-custom-1 text-white flex justify-between md:hidden">
+    <a href="#" class="block ml-6 pt-4 text-white font-bold">Worker Attendance</a>
+    <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700"
+    type="button"
+    onClick={() => setTopbarOpen(!TopbarOpen)}
+    >
+      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  <div className={
+      "md:hidden lg:flex flex-grow items-center  bg-blue-custom-1" +
+      (TopbarOpen ? " flex" : " hidden")
+    }
+    id="example-navbar-danger"
+    >
+     <ul className="md:hidden flex flex-col py-4 ml-6 2xl:text-xl lg:text-base text-sm">
             <li>
                 <a href="/dashboard" className="cursor-pointer flex items-center h-12 transform active:bg-blue-custom-1 hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                     Dashboard
@@ -51,15 +63,16 @@ return (
                     </Link>
                 </a>
             </li>
+            <li>
+                <a onClick={logout} className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                   Sign out
+                </a>
+            </li>
             </ul>
-            <div className="h-full flex flex-col justify-end ml-6 mb-5">
-                <a onClick={logout} className="cursor-pointer row-start-6 row-end-7 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
-                        Sign out</a>
-            </div>
-        </div>
     </div>
+     {/* Side-Menu */}
   </div>
 )
 };
 
-export default Menu;
+export default Topbar;
