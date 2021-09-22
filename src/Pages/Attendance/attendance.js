@@ -1,27 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Menu from '../Components/menu';
+import Navbar from '../Components/side-navbar';
 import Profile from '../Components/welcomeprofile';
 import Address from './address';
-import Geo from './geolocation';
-import Maps from '../Components/maps';
+import Topbar from '../Components/top-navbar';
+// import Sidebar from '../Components/sidebar';
 
 const Attendance = () => {
     return (
         <div className="content">
             {/* Layout for side menu */}
-            <div>
-                <Menu />
+            <div className=" md:contents hidden">
+                <Navbar />
+            </div>
+            <div className="sm:contents">
+                <Topbar />
             </div>
         {/* Layout for Dashboard */}
-        <div className="flex flex-col h-screen bg-whi-custom-1 ">
-            <div className="mt-6 ml-6 text-2xl font-bold text-lg"> 
-            <h1 className="text-2xl mb-6">Dashboard</h1>
+        <div className="bg-whi-custom-1">
+        <div className="flex h-screen flex-col">
+            <div className="mt-6 ml-6 font-bold"> 
+            <h1 className="2xl:text-4xl md:text-2xl text-xl mb-6">Dashboard</h1>
             {/* Layout for profile */}
             <div className="mb-6">
                 <Profile />
             </div>
-            <h1 className="text-xl mb-4">
+            <h1 className="2xl:text-4xl md:text-2xl text-lg mb-4">
             {new Date()
                 .toLocaleDateString("en-GB", {
                 weekday: "long",
@@ -40,6 +43,7 @@ const Attendance = () => {
                     <Address />
                 </div>
             </div>
+        </div>
         </div>
       </div>
       

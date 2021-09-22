@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         // Generate custom color palette
         'black-custom-1': '#333333', //1
+        'grey-custom-1': '#797E8D', //1
         'blue-custom-1': '#555B6E', //2
         'blue-custom-2': '#89B0AE', //3
         'blue-custom-3': '#BEE3DB', //4
