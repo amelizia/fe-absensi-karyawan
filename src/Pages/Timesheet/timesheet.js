@@ -1,7 +1,8 @@
 import React from 'react';
-import Navbar from '../Components/side-navbar';
-import Topbar from '../Components/top-navbar';
-import Profile from '../Components/welcomeprofile';
+import Navbar from '../../Components/side-navbar';
+import Topbar from '../../Components/top-navbar';
+import Profile from '../../Components/welcomeprofile';
+import TimeStamp from './timestamp'
 
 const Timesheet = () => {
     return (
@@ -33,6 +34,7 @@ const Timesheet = () => {
             </div>
             <h1 className="2xl:text-4xl md:text-2xl text-lg mb-4"> User’s Timesheets </h1>
             </div>
+            <TimeStamp />
         </div>
       </div>
       
