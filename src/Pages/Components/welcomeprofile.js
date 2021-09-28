@@ -14,11 +14,11 @@ componentDidMount(){
   fetch('https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard', {
      // fetch('https://jsonplaceholder.typicode.com/users/1', {
         method: 'GET',
-        mode: 'no-cors', // no-cors, *cors, same-origin
-        cache: 'default', 
-        credentials: 'same-origin', 
-        redirect: 'follow', 
-        referrerPolicy: 'same-origin', 
+        // mode: 'no-cors', // no-cors, *cors, same-origin
+        // cache: 'default', 
+        // credentials: 'same-origin', 
+        // redirect: 'follow', 
+        // referrerPolicy: 'same-origin', 
         headers: {
           'Content-type': 'application/json',
           'Access-Control-Allow-Origin':'*' ,
