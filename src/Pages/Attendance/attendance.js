@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../Components/side-navbar';
-import Profile from '../Components/welcomeprofile';
+import Navbar from '../../Components/side-navbar';
+import Profile from '../../Components/welcomeprofile';
 import Address from './address';
-import Topbar from '../Components/top-navbar';
-// import Sidebar from '../Components/sidebar';
+import Topbar from '../../Components/top-navbar';
+// import Sidebar from '../../Components/sidebar';
 
 const Attendance = () => {
     return (
