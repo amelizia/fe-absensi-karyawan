@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Attendance from "./Pages/Attendance/attendance"; //attendance
 import Timesheet from "./Pages/Timesheet/timesheet"; //timesheet page
 import Login from "./Pages/Login/login"; //login page
+import Register from "./Pages/Register/register"; //signup page
+import Forgot from "./Pages/Forgot Password/forgot"; //forgot page
 import NotFound from "./Pages/404/404"; //404 not found
 import Mapss from "./Components/maps";
 
@@ -15,6 +17,8 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route exact path="/maps" component={Mapss} />
       <Route exact path="/timesheets" component={Timesheet} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/forgot-password" component={Forgot} />
       <Route component={NotFound} />
     </Switch>
   </Router>
