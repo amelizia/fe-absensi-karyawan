@@ -39,9 +39,9 @@ componentDidMount(){
       // .then(data => {
       //   console.log('Success:', data);
       // })
-      .catch((error) => {
-        console.error('Error:', error);
-      })
+      // .catch((error) => {
+      //   console.error('Error:', error);
+      // })
 }
 render(){
     console.log('Render Method Called')
