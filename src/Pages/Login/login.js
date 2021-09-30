@@ -1,12 +1,12 @@
 import React, {useState}  from "react";
-import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [rememberToken, setRememberToken] = useState("");
+  // const [token, setToken] = useState("");
+  // const [rememberToken, setRememberToken] = useState("");
   const [error, setError] = useState(null);
   const cookies = new Cookies();
   const History = useHistory();

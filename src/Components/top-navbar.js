@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Topbar = () => {
   const [TopbarOpen, setTopbarOpen] = React.useState(false);
@@ -27,7 +27,7 @@ return (
     <div className="content">
          {/* <!-- mobile menu bar --> */}
   <div class="bg-blue-custom-1 text-white flex justify-between md:hidden">
-    <a href="#" class="block ml-6 pt-4 text-white font-bold">Worker Attendance</a>
+    <a class="block ml-6 pt-4 text-white font-bold">Worker Attendance</a>
     <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700"
     type="button"
     onClick={() => setTopbarOpen(!TopbarOpen)}
@@ -45,28 +45,30 @@ return (
     >
      <ul className="md:hidden flex flex-col py-4 ml-6 2xl:text-xl lg:text-base text-sm">
             <li>
-                <a href="/dashboard" className="cursor-pointer flex items-center h-12 transform active:bg-blue-custom-1 hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
-                    Dashboard
-                </a>
+                <h1 className="cursor-pointer flex items-center h-12 transform active:bg-blue-custom-1 hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <Link to="/dashboard">
+                        Dashboard
+                    </Link>
+                </h1>
             </li>
             <li>
-                <a className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <h1 className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                     <Link to="/timesheets">
                         Timesheets
                     </Link>
-                </a>
+                </h1>
             </li>
             <li>
-                <a href="/" className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <h1 className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                     <Link to="/admin">
                         Administration
                     </Link>
-                </a>
+                </h1>
             </li>
             <li>
-                <a onClick={logout} className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <h1 onClick={logout} className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                    Sign out
-                </a>
+                </h1>
             </li>
             </ul>
     </div>

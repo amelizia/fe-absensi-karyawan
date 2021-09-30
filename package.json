@@ -10,6 +10,7 @@
     "@craco/craco": "^6.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/react-fontawesome": "^0.1.15",
+    "@react-google-maps/api": "^2.4.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -38,7 +39,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "node server.js",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

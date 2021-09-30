@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Navbar = () => {
     
@@ -39,23 +39,23 @@ return (
                 </a>
             </li>
             <li>
-                <a className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <h1 className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                     <Link to="/timesheets">
                         Timesheets
                     </Link>
-                </a>
+                </h1>
             </li>
             <li>
-                <a href="/" className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                <h1 className="cursor-pointer flex items-center h-12 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
                     <Link to="/admin">
                         Administration
                     </Link>
-                </a>
+                </h1>
             </li>
             </ul>
             <div className="h-full flex flex-col justify-end ml-6 mb-5 2xl:text-xl lg:text-base text-sm">
-                <a onClick={logout} className="cursor-pointer row-start-6 row-end-7 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
-                        Sign out</a>
+                <h1 onClick={logout} className="cursor-pointer row-start-6 row-end-7 transform hover:translate-x-3 hover:scale-110 transition-transform ease-in-out duration-200 text-white hover:text-orange-custom-1">
+                        Sign out</h1>
             </div>
         </div>
     </div>
