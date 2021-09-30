@@ -27,15 +27,13 @@ componentDidMount(){
         },
       })
       .then(response => response.json())
-      .then(data => {this.setState({ 
+      .then(data => this.setState({ 
         data,
         full_name: data.data.full_name,
         role_description: data.data.role_description,
         office_longitude: data.data.office_longitude,
         office_latitude: data.data.office_latitude,
-      });
-      console.log('Success:', data);
-      })
+      }))
       // .then(data => {
       //   console.log('Success:', data);
       // })
