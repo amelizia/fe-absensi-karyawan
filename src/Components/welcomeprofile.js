@@ -14,7 +14,8 @@ class Profile extends Component {
 
 componentDidMount(){
     console.log('Component Mounted')
-    fetch('https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard', {
+    // fetch('https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard', {
+    fetch('https://test-app-database-absensi.herokuapp.com/api/dashboard', {
         method: 'GET',
         // mode: 'no-cors', // no-cors, *cors, same-origin
         // cache: 'default', 
