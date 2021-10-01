@@ -16,7 +16,7 @@ componentDidMount(){
     console.log('Component Mounted')
     fetch('https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard', {
         method: 'GET',
-        mode: 'no-cors', // no-cors, *cors, same-origin
+        // mode: 'no-cors', // no-cors, *cors, same-origin
         // cache: 'default', 
         // credentials: 'same-origin', 
         // redirect: 'follow', 
@@ -24,9 +24,17 @@ componentDidMount(){
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           'Access-Control-Allow-Origin':'*' ,
+          'Accept': 'application/json',
         },
       })
-      .then(response => response.json())
+      // .then(response => response.json())
+      .then(function (response) {
+        if (!response.ok) {
+           return response.text().then(result => Promise.reject(new Error(result)));
+        }
+    
+        return response.json();
+    })
       .then(data => this.setState({ 
         data,
         full_name: data.data.full_name,

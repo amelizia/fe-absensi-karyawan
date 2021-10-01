@@ -5,8 +5,8 @@ import Cookies from 'universal-cookie';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [token, setToken] = useState("");
-  // const [rememberToken, setRememberToken] = useState("");
+  const [token, setToken] = useState("");
+  const [rememberToken, setRememberToken] = useState("");
   const [error, setError] = useState(null);
   const cookies = new Cookies();
   const History = useHistory();
@@ -19,9 +19,12 @@ const Login = () => {
       password,
     };
 
-    fetch("API_URLbuatlogin", {
+    fetch('https://ipe8-worker-attendance-be.herokuapp.com/api/auth/login', {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      // mode: 'no-cors',
+      headers: { 
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin':'*'  },
       body: JSON.stringify(SignIn),
     })
     .then((res) => {
