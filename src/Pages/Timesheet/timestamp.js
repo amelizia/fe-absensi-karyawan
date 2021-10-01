@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import TableHeader from "../../Components/DataTable/Header";
 import Pagination from "../../Components/DataTable/Pagination";
 import Search from "../../Components/DataTable/Search";
@@ -8,6 +8,7 @@ const TimeStamp = () => {
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
+
     const [sorting, setSorting] = useState({ field: "", order: "" });
 
     const ITEMS_PER_PAGE = 50;
@@ -16,9 +17,23 @@ const TimeStamp = () => {
         { name: "Date", field: "id", sortable: false },
         { name: "Start Time", field: "start", sortable: true },
         { name: "Finish Time", field: "finish", sortable: true },
-        { name: "Work Time", field: "duration", sortable: false },
+        { name: "Working Time", field: "duration", sortable: false },
         { name: "Status", field: "status", sortable: false}
     ];
+
+    useEffect(() => {
+        const getData = () => {
+
+            fetch("https://jsonplaceholder.typicode.com/comments")
+                .then(response => response.json())
+                .then(json => {
+                    setDate(json);
+                    console.log(json);
+                });
+        };
+
+        getData();
+    }, []);
 
     const dateData = useMemo(() => {
         let computedDate = date;
@@ -33,7 +48,7 @@ const TimeStamp = () => {
 
         setTotalItems(computedDate.length);
 
-        //Sorting comments
+        //Sorting date
         if (sorting.field) {
             const reversed = sorting.order === "asc" ? 1 : -1;
             computedDate = computedDate.sort(
@@ -47,54 +62,53 @@ const TimeStamp = () => {
             (currentPage - 1) * ITEMS_PER_PAGE,
             (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
         );
-    }, [date, currentPage, search, sorting]);
+    }, [date, currentPage,search, sorting]);
 
     return (
         <>
-            <div className="row w-100">
-                <div className="col mb-3 col-12 text-center">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Pagination
-                                total={totalItems}
-                                itemsPerPage={ITEMS_PER_PAGE}
-                                currentPage={currentPage}
-                                onPageChange={page => setCurrentPage(page)}
-                            />
-                        </div>
-                        <div className="col-md-6 d-flex flex-row-reverse">
-                            <Search
-                                onSearch={value => {
-                                    setSearch(value);
-                                    setCurrentPage(1);
-                                }}
-                            />
-                        </div>
-                    </div>
-
-                    <table className="table table-striped">
-                        <TableHeader
-                            headers={headers}
-                            onSorting={(field, order) =>
-                                setSorting({ field, order })
-                            }
-                        />
-                        <tbody>
-                            {dateData.map(date => (
-                                <tr>
-                                    <th scope="row" key={date.id}>
-                                        {date.id}
-                                    </th>
-                                    <td>{date.start}</td>
-                                    <td>{date.finish}</td>
-                                    <td>{date.duration}</td>
-                                    <td>{date.status}</td>
+            <section class="container mx-auto p-6 font-bold">
+                <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                    <div class="w-full overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                                    <Pagination
+                                        total={totalItems}
+                                        itemsPerPage={ITEMS_PER_PAGE}
+                                        currentPage={currentPage}
+                                        onPageChange={page => setCurrentPage(page)}
+                                    />
+                                    <TableHeader
+                                        headers={headers}
+                                        onSorting={(field, order) =>
+                                        setSorting({ field, order })
+                                        }
+                                    />
+                                    <Search
+                                        onSearch={value => {
+                                        setSearch(value);
+                                        setCurrentPage(1);
+                                        }}
+                                    />
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                <tbody class="bg-white">
+                                    {dateData.map(date => (
+                                        <tr>
+                                            <th scope="row" key={date.id}>
+                                                {date.id}
+                                            </th>
+                                            <td>{date.start}</td>
+                                            <td>{date.finish}</td>
+                                            <td>{date.duration}</td>
+                                            <td>{date.status}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };
