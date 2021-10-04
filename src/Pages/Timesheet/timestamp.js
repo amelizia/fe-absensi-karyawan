@@ -16,7 +16,7 @@ const TimeStamp = () => {
         { name: "Date", field: "id", sortable: false },
         { name: "Start Time", field: "start", sortable: true },
         { name: "Finish Time", field: "finish", sortable: true },
-        { name: "Work Time", field: "duration", sortable: false },
+        { name: "Working Time", field: "duration", sortable: false },
         { name: "Status", field: "status", sortable: false}
     ];
 
@@ -33,7 +33,7 @@ const TimeStamp = () => {
 
         setTotalItems(computedDate.length);
 
-        //Sorting comments
+        //Sorting date
         if (sorting.field) {
             const reversed = sorting.order === "asc" ? 1 : -1;
             computedDate = computedDate.sort(
@@ -51,10 +51,10 @@ const TimeStamp = () => {
 
     return (
         <>
-            <div className="row w-100">
-                <div className="col mb-3 col-12 text-center">
-                    <div className="row">
-                        <div className="col-md-6">
+            <div className="container mx-auto p-6 font-bold">
+                <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                    <div className="w-full overflow-x-auto">
+                        <div className="w-1/3">
                             <Pagination
                                 total={totalItems}
                                 itemsPerPage={ITEMS_PER_PAGE}
@@ -62,7 +62,7 @@ const TimeStamp = () => {
                                 onPageChange={page => setCurrentPage(page)}
                             />
                         </div>
-                        <div className="col-md-6 d-flex flex-row-reverse">
+                        <div className="w-full items-center text-right flex-grow">
                             <Search
                                 onSearch={value => {
                                     setSearch(value);
@@ -71,8 +71,7 @@ const TimeStamp = () => {
                             />
                         </div>
                     </div>
-
-                    <table className="table table-striped">
+                    <table className="w-full items-center text-center flex-grow">
                         <TableHeader
                             headers={headers}
                             onSorting={(field, order) =>
@@ -82,7 +81,7 @@ const TimeStamp = () => {
                         <tbody>
                             {dateData.map(date => (
                                 <tr>
-                                    <th scope="row" key={date.id}>
+                                    <th scope="w-full" key={date.id}>
                                         {date.id}
                                     </th>
                                     <td>{date.start}</td>

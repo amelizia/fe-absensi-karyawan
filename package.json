@@ -34,6 +34,7 @@
     "react-scripts": "4.0.3",
     "recompose": "^0.30.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14",
+    "tailwindcss-tables": "^0.4.0",
     "universal-cookie": "^4.0.4",
     "use-position": "0.0.8",
     "web-vitals": "^1.0.1"
