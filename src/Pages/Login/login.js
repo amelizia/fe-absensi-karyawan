@@ -1,14 +1,11 @@
 import React, {useState}  from "react";
 import { Link, useHistory } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [rememberToken, setRememberToken] = useState("");
   const [error, setError] = useState(null);
-  const cookies = new Cookies();
   const History = useHistory();
   
   const handleSubmit = (e) => {
@@ -92,7 +89,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   type="password"
-                  minLength={8}
+                  minLength={5}
                   autoComplete="current-password"
                   required
                   className="appearance-none rounded-none relative bg-whi-custom-1 block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
