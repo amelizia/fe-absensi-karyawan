@@ -28,7 +28,7 @@ class Profile extends Component {
 
   async componentDidMount() {
     const res = await fetch(
-      "https://https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard",
+      "https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard",
       {
         method: "GET",
         // mode: 'no-cors',
