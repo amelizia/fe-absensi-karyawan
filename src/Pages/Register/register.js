@@ -1,6 +1,6 @@
 import React, {useState}  from "react";
 import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from "js-cookie";
 
 const Register = () => {
   const [name, setName] = useState ("");
@@ -107,7 +107,7 @@ const Register = () => {
                   id="password"
                   name="password"
                   type="password"
-                  minLength={8}
+                  minLength={5}
                   autoComplete="current-password"
                   required
                   className="appearance-none rounded-none relative bg-whi-custom-1 block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
