@@ -21,10 +21,10 @@ class Login extends Component {
   }
   
   componentDidMount() {
-    const token = Cookies.get("token");
+    const token = Cookies.get("jwt");
     if (token !== undefined) {
       const decodedToken = jwt(token);
-      if (decodedToken.data.message === "OK") {
+      if (decodedToken.data.status === 200 ) {
         Router.push("/dashboard");
       }
     }
@@ -40,9 +40,10 @@ class Login extends Component {
 
     fetch("https://ipe8-worker-attendance-be.herokuapp.com/api/auth/login", {
       method: "POST",
+      // mode: 'no-cors',
       headers: { 
         'Content-type': 'application/json; charset=UTF-8',
-        'Access-Control-Allow-Origin':'*', 
+        // 'Access-Control-Allow-Origin':'*', 
       },
       body: JSON.stringify(SignIn),
     })
