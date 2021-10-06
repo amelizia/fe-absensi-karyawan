@@ -1,11 +1,9 @@
 import React, {useState}  from "react";
 import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from "js-cookie";
 
 const Forgot = () => {
   const [email, setEmail] = useState("");
-  const [token, setToken] = useState("");
-  const [rememberToken, setRememberToken] = useState("");
   const [error, setError] = useState(null);
   const cookies = new Cookies();
   const History = useHistory();
@@ -13,14 +11,14 @@ const Forgot = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const SignUp = {
+    const Forgot = {
       email,
     };
 
-    fetch("API_URLbuatsignup", {
+    fetch("API_URLbuatforgot", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(SignUp),
+      body: JSON.stringify(Forgot),
     })
     .then((res) => {
       return res.json();
