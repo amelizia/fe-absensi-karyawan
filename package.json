@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "google-maps-react": "^2.0.6",
     "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
     "node-sass": "^4.14.1",
     "pagination": "github:react-bootstrap/Pagination",
     "path": "^0.12.7",
