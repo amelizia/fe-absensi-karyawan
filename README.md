@@ -1,7 +1,7 @@
 # fe-absensi-karyawan
 Project Glints IPE 8; Front-end with react
 
-[https://ipe8-worker-attendance.herokuapp.com/](https://ipe8-worker-attendance.herokuapp.com/).\
+[https://ipe8-workerattendance.herokuapp.com/](https://ipe8-workerattendance.herokuapp.com/).\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 UI Design with [Figma](https://www.figma.com/file/EKpcufknPsJMoPAqIMqzRc/Mock-Up---Employee-Attendence).
 
