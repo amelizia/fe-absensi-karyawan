@@ -8,8 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [rememberToken, setRememberToken] = useState("");
-  const [error, setError] = useState(null);
-  const cookies = new Cookies();
+  const [error, setError] = useState(null); 
   const History = useHistory();
   
   const handleSubmit = (e) => {
