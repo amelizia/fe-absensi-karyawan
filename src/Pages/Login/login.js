@@ -31,6 +31,7 @@ class Login extends Component {
 
     fetch("https://ipe8-worker-attendance-be.herokuapp.com/api/auth/login", {
       method: "POST",
+      // mode:"no-cors",
       headers: { 
         'Content-type': 'application/json; charset=UTF-8',
         // 'Access-Control-Allow-Origin':'*', 
@@ -56,7 +57,7 @@ class Login extends Component {
           if (role_id === "Employee") {
             Router.push("/dashboard");
           }
-          else if (role_id = "Admin") {
+          else if (role_id === "Admin") {
             Router.push("/admin");
           }
         }

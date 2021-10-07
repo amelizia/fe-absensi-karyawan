@@ -9,7 +9,7 @@ const Register = () => {
   const [token, setToken] = useState("");
   const [rememberToken, setRememberToken] = useState("");
   const [error, setError] = useState(null);
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const History = useHistory();
   
   const handleSubmit = (e) => {
