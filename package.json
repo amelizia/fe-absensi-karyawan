@@ -19,7 +19,6 @@
     "axios": "^0.21.4",
     "express": "^4.17.1",
     "google-maps-react": "^2.0.6",
-    "http-proxy-middleware": "^2.0.1",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
     "node-sass": "^4.14.1",
@@ -43,27 +42,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
-  },
-  "proxy": {
-    "/login": {
-      "target": "https://ipe8-worker-attendance-be.herokuapp.com/api/auth"
-      },
-    "/register": {
-      "target": "https://ipe8-worker-attendance-be.herokuapp.com/api/auth"
-      },
-    "/dashboard": {
-      "target": "https://ipe8-worker-attendance-be.herokuapp.com/api/auth"
-    },
-    "/checkin": {
-      "target": "https://ipe8-worker-attendance-be.herokuapp.com/api/auth"
-      },
-    "/checkout": {
-       "target": "https://ipe8-worker-attendance-be.herokuapp.com/api/auth"
-      }
   },
   "eslintConfig": {
     "extends": [
