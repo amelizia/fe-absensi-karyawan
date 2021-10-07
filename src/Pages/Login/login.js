@@ -1,7 +1,7 @@
 import React, { Component, useState }  from "react";
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cookies from "js-cookie";
-import jwt from 'jwt-decode';
+// import Cookies from "js-cookie";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +10,7 @@ class Login extends Component {
       email: "",
       password: "",
       error: null,
+      role_id:""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,16 +21,6 @@ class Login extends Component {
     });
   }
   
-  componentDidMount() {
-    const token = Cookies.get("jwt");
-    if (token !== undefined) {
-      const decodedToken = jwt(token);
-      if (decodedToken.data.status === 200 ) {
-        Router.push("/dashboard");
-      }
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,7 +31,6 @@ class Login extends Component {
 
     fetch("https://ipe8-worker-attendance-be.herokuapp.com/api/auth/login", {
       method: "POST",
-      // mode: 'no-cors',
       headers: { 
         'Content-type': 'application/json; charset=UTF-8',
         // 'Access-Control-Allow-Origin':'*', 
@@ -49,6 +39,27 @@ class Login extends Component {
     })
       .then((res) => {
         return res.json();
+      })
+      .then((data) => {
+        if(data.status === 400, 404, 500) {
+          throw Error(data.message);
+        }
+        else {
+          this.setState({
+            data,
+            role_id: data.data.role_id,
+          });
+
+          localStorage.setItem("role_id", data.data.role_id);
+
+          const role_id = localStorage.getItem("role_id");
+          if (role_id === "Employee") {
+            Router.push("/dashboard");
+          }
+          else if (role_id = "Admin") {
+            Router.push("/admin");
+          }
+        }
       })
       .catch((data) => {
         this.setState({ error: data.message });

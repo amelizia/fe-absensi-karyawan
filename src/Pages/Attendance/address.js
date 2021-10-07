@@ -106,7 +106,7 @@ class  Address extends Component {
         {lat && <a className="font-semibold md:text-lg text-base">{lat.toFixed(7)}</a>}
         {lng && <a className="font-semibold md:text-lg text-base">, {lng.toFixed(7)}</a>}
         </p>}
-        {<a href='/maps' className="sm:text-sm text-xs font-medium text-gray-600 ">see the maps</a>}
+        {<a href='/maps' className="sm:text-sm text-xs font-medium text-gray-600 transform hover:text-gray-800 hover:text-md">see the maps</a>}
             
         <p className="group relative w-full flex justify-center mt-12">
             <button onClick={this.handleCheckin}
