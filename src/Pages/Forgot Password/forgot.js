@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 const Forgot = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const History = useHistory();
   
   const handleSubmit = (e) => {

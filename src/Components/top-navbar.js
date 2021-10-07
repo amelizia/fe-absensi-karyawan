@@ -1,5 +1,6 @@
-import React from "react";
-import { Link, useHistory } from 'react-router-dom';
+import React, { Component, useState }  from "react";
+import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const Topbar = () => {
   const [TopbarOpen, setTopbarOpen] = React.useState(false);
@@ -8,19 +9,16 @@ const Topbar = () => {
     const logout = (e) => {
       e.preventDefault();
   
-      if (typeof Storage !== "undefined") {
-        const token = localStorage.getItem("token");
-  
-        fetch("API_URLbuatlogout", {
+      fetch("API_URLbuatlogout", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: token },
+          headers: { "Content-Type": "application/json", 
+          Authorization: Cookies.get("jwt") 
+        },
         }).then(() => {
-          localStorage.removeItem("logged");
-          localStorage.removeItem("token");
-          localStorage.removeItem("rememberToken");
+          Cookies.remove("jwt");
+          localStorage.removeItem("role_id");
           History.push("/");
         });
-      }
     };
 
 return (

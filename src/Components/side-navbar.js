@@ -1,27 +1,24 @@
-import React from "react";
-import { Link, useHistory } from 'react-router-dom';
+import React, { Component, useState }  from "react";
+import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const Navbar = () => {
-    
     const History = useHistory();
     
     const logout = (e) => {
-      e.preventDefault();
-  
-      if (typeof Storage !== "undefined") {
-        const token = localStorage.getItem("token");
-  
+        e.preventDefault();
+    
         fetch("API_URLbuatlogout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: token },
-        }).then(() => {
-          localStorage.removeItem("logged");
-          localStorage.removeItem("token");
-          localStorage.removeItem("rememberToken");
-          History.push("/");
-        });
-      }
-    };
+            method: "POST",
+            headers: { "Content-Type": "application/json", 
+            Authorization: Cookies.get("jwt") 
+          },
+          }).then(() => {
+            Cookies.remove("jwt");
+            localStorage.removeItem("role_id");
+            History.push("/");
+          });
+      };
 
 return (
     <div className="content">

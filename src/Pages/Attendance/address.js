@@ -1,81 +1,129 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
-import Geocode from "react-geocode";
+import React, { Component, useState }  from "react";
+import Cookies from "js-cookie";
+class  Address extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data:[],
+      lat: 0,
+      lng: 0,
+      currentTime: '',
+      error: null,
+    };
+    this.handleCheckin = this.handleCheckin.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
+  }
+    
+  componentWillMount(){
+    this.clock = setInterval(
+      () => this.setCurrentTime(),
+      1000
+    )
+    
+    if (!!navigator.geolocation) {
+      navigator.geolocation.watchPosition((position) => {
+        this.setState({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      },
+      (err) => console.log(err),
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 10000 },
+      );
+    } 
+    else {
+      alert('The browser does not support geolocation')
+    }
+  }
 
-  const Address = () => {
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [Add, setAdd] = useState(null);
-  const [Tmpstmp, setTmpstmp] = useState (null);
-  const [status, setStatus] = useState(null);
-
-  const API_Key = "AIzaSyAWa7-RTKOR7BulmJ1PWmDaJ9r2ZB8UqAs";
-
-      // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-      Geocode.setApiKey(API_Key);
-      // ROOFTOP param returns the most accurate result.
-      Geocode.setLocationType("ROOFTOP");
-      // set response language. Defaults to english.
-      Geocode.setLanguage("en");
-      // Enable or disable logs. Its optional.
-      Geocode.enableDebug();
-
-
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setStatus('Geolocation is not supported by your browser');
-    } else {
-      setStatus('Locating...');
-      setTmpstmp(
-        new Date().toLocaleDateString("zh-Hans-CN", {
+  setCurrentTime(){
+    this.setState({
+      currentTime: 
+              (new Date().toLocaleDateString("zh-Hans-CN", {
           year: "numeric",
           month: "2-digit",
           day: "2-digit"
       }).replace(/\//g, '-')+ " " + 
-      new Date().toLocaleTimeString("en-GB",{}));
-
-      navigator.geolocation.getCurrentPosition((position) => {
-        setStatus(null);
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
-      }, () => {
-        setStatus('Unable to retrieve your location');
-      });
-
-      Geocode.fromLatLng(lat, lng).then(
-        (response) => {
-          setAdd(response.results[0].formatted_address);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    }
+      new Date().toLocaleTimeString("en-GB",{}))
+    });
   }
 
-  return (
-    <div className="text-center">
-      <button className="mb-6 font-bold 2xl:text-4xl md:text-2xl text-lg" onClick={getLocation}>Your current location</button>
-      <p className="font-semibold md:text-lg text-base">{status}</p>
-      {Tmpstmp && <p className="font-semibold md:text-lg text-base ">{Tmpstmp}</p>}
-      {lat && <a className="font-semibold md:text-lg text-base">{lat.toFixed(7)}</a>}
-      {lng && <a className="font-semibold md:text-lg text-base">, {lng.toFixed(7)}</a>}
-      {Add && <p className="sm:text-sm text-xs font-medium text-gray-600 ">({Add})</p>}
+  async handleCheckin() {
+    const payload = {
+      "current_date": this.state.currentTime, 
+      "user_latitude": this.state.lat,
+      "user_longitude": this.state.lng 
+    }
+    const res = await fetch(
+      'https://ipe8-worker-attendance-be.herokuapp.com/api/checkin',
+      {
+        method: "POST",
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          // 'Access-Control-Allow-Origin':'*', 
+          Authorization: Cookies.get("jwt"),
+        },
+        body: JSON.stringify(payload)
+      }
+    )
+    .catch((data) => {
+      this.setState({ error: data.message });
+    });
+  }
+
+  async handleCheckout() {
+    const payload = {
+      "current_date": this.state.currentTime, 
+      "user_latitude": this.state.lat,
+      "user_longitude": this.state.lng 
+    }
+    const res = await fetch(
+      'https://ipe8-worker-attendance-be.herokuapp.com/api/checkout',
+      {
+        method: "POST",
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          // 'Access-Control-Allow-Origin':'*', 
+          Authorization: Cookies.get("jwt"),
+        },
+        body: JSON.stringify(payload)
+      }
+      ).catch((data) => {
+        this.setState({ error: data.message });
+      });
+    }
+
+  render() {
+    const { p } = this.props;
+    const { lat, lng } = this.state;
+    console.log(lat, lng)
+
+    return (
+      <div className="text-center">
+        <h1 className="mb-6 font-bold 2xl:text-4xl md:text-2xl text-lg">Your current location</h1>
+        {this.state.currentTime && <p className="font-semibold md:text-lg text-base ">{this.state.currentTime}</p>}
+        {<p >
+        {lat && <a className="font-semibold md:text-lg text-base">{lat.toFixed(7)}</a>}
+        {lng && <a className="font-semibold md:text-lg text-base">, {lng.toFixed(7)}</a>}
+        </p>}
+        {<a href='/maps' className="sm:text-sm text-xs font-medium text-gray-600 transform hover:text-gray-800 hover:text-md">see the maps</a>}
+            
+        <p className="group relative w-full flex justify-center mt-12">
+            <button onClick={this.handleCheckin}
+            className="py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+              Check-in
+          </button>
+          <button onClick={this.handleCheckout}
+            className="ml-12 py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
+              Check-out
+          </button>
+        </p> 
+        
+        {this.state.error !== null && <p className="mt-2 text-sm text-center text-blue-custom-2">{this.state.error}</p>}
     
-      <p className="group relative w-full flex justify-center mt-12">
-        <button type=""
-        className="py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
-          Check-in
-      </button>
-      <button type=""
-        className="ml-12 py-2 px-4 border border-transparent sm:text-sm text-xs tracking-widest font-medium text-white hover:bg-blue-custom-2 bg-green-custom-3 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-custom-3">
-           Check-out
-      </button>
-      </p>
-
-
-    </div>
-  );
-}
+      </div>
+    );
+   }
+  };
 
 export default Address;
