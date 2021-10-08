@@ -36,7 +36,7 @@ class Register extends Component {
       Swal.fire(
         'Confirm Password Wrong',
         'It is not match!',
-        'warning'
+        'error'
       );
     } 
     else {
