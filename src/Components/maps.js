@@ -59,5 +59,5 @@ class Maps extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAWa7-RTKOR7BulmJ1PWmDaJ9r2ZB8UqAs' //API belong to others resource
+  apiKey: 'AIzaSyAMOwh-FNNbngix1PxK0wkHUDIzn2lxpA4' //API belong to others resource apiKey: 'AIzaSyAWa7-RTKOR7BulmJ1PWmDaJ9r2ZB8UqAs'
 })(Maps);
