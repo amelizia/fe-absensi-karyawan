@@ -13,7 +13,7 @@ class Admin extends Component {
 
   async componentDidMount() {
     const res = await fetch(
-      "API admin",
+      "https://ipe8-worker-attendance-be.herokuapp.com/api/dashboard",
       {
         method: "GET",
         headers: {

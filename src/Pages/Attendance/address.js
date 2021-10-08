@@ -83,7 +83,6 @@ class  Address extends Component {
         method: "POST",
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
-          // 'Access-Control-Allow-Origin':'*', 
           Authorization: Cookies.get("jwt"),
         },
         body: JSON.stringify(payload)

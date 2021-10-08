@@ -1,57 +1,65 @@
-import React, {useState}  from "react";
-import { Link, useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cookies from "js-cookie";
+import React, { Component, useState }  from "react";
+import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const Register = () => {
-  const [name, setName] = useState ("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const [rememberToken, setRememberToken] = useState("");
-  const [error, setError] = useState(null);
-  // const cookies = new Cookies();
-  const History = useHistory();
+class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      name: "",
+      email: "",
+      password: "",
+      confirm_password:"",
+      error: null,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event, field) {
+    this.setState({
+      [field]: event.target.value,
+    });
+  }
   
-  const handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const SignUp = {
-      name,
-      email,
-      password,
+      full_name: this.state.full_name,
+      email: this.state.email,
+      password: this.state.password,
     };
-
-    fetch("API_URLbuatsignup", {
+  
+    if (this.state.password !== this.state.confirm_password) {
+      Swal.fire(
+        'Confirm Password Wrong',
+        'It is not match!',
+        'warning'
+      );
+    } 
+    else {
+    fetch("https://ipe8-worker-attendance-be.herokuapp.com/api/auth/register", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        'Content-type': 'application/json; charset=UTF-8',
+      },
       body: JSON.stringify(SignUp),
     })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      if (data.status === "error") {
-        throw Error(data.message);
-      } else {
-        setError(null);
-        if (typeof Storage !== "undefined") {
-          localStorage.setItem("logged", "true");
-          localStorage.setItem("token", data.token, {
-            httpOnly: true,
-          });
-          Cookies.set("token", data.token);
-          localStorage.setItem("rememberToken", data.rememberToken);
-          History.push("/dashboard");
-        }
-      }
-    })
-    .catch((err) => {
-      setError(err.message);
-    });
-};
+      .then((res) => {
+        return res.json();
+      })
+      .catch((data) => {
+        this.setState({ error: data.message });
+      });
+    }
+  };
 
+  render() {
     return (
-        <div className="min-h-screen  bg-whi-custom-1 grid item-center md:grid-cols-2">
+      <>
+         <div className="min-h-screen  bg-whi-custom-1 grid item-center md:grid-cols-2">
           <div className="bg-blue-custom-1 flex flex-col justify-center">
             <div className="ml-6 md:ml-10 lg:ml-16 text-white  ">
               <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold">Worker Attendance</h1>
@@ -59,13 +67,12 @@ const Register = () => {
             </div>
           </div>
         <div className="mt-6 mx-6 md:mx-10 lg:mx-32 flex flex-col justify-center text-2xl font-bold text-lg">
-            <div className="text-xl mb-4 flex items-end font-bold text-black-custom-1">Create an account
-          </div>
+            <div className="text-xl mb-4 flex items-end font-bold text-black-custom-1">Create an account</div>
           <div  className="p-5 bg-blue-custom-3">
-          <form onSubmit={handleSubmit} 
+          <form onSubmit={this.handleSubmit}
           className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
-            {error !== null && <p className="text-sm text-right text-blue-custom-2">{error}</p>}
+            {this.state.error !== null && <p className="text-sm text-right text-blue-custom-2">{this.state.error}</p>}
             <div>
             <div className="rounded-md -space-y-px">
                 <label htmlFor="name" className="sr-only">
@@ -79,8 +86,8 @@ const Register = () => {
                   required
                   className="appearance-none rounded-none bg-whi-custom-1 relative block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
                   placeholder="Full Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={this.state.full_name}
+                  onChange={(event) => this.handleChange(event, "full_name")}
                 />
               </div>
               <div className="mt-3">
@@ -95,8 +102,8 @@ const Register = () => {
                   required
                   className="appearance-none rounded-none bg-whi-custom-1 relative block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
                   placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={this.state.email}
+                  onChange={(event) => this.handleChange(event, "email")}
                 />
               </div>
               <div className="mt-3">
@@ -112,8 +119,24 @@ const Register = () => {
                   required
                   className="appearance-none rounded-none relative bg-whi-custom-1 block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={this.state.password}
+                  onChange={(event) => this.handleChange(event, "password")}
+                />
+              </div>
+              <div className="mt-3">
+                <label htmlFor="confirm_password" className="sr-only">
+                  Password
+                </label>
+                <input
+                  name="confirm_password"
+                  type="password"
+                  minLength={5}
+                  autoComplete="current-password"
+                  required
+                  className="appearance-none rounded-none relative bg-whi-custom-1 block w-full px-3 py-2 placeholder-blue-custom-3 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm"
+                  placeholder="Confirm Password"
+                  value={this.state.confirm_password}
+                  onChange={(event) => this.handleChange(event, "confirm_password")}
                 />
               </div>
             </div>
@@ -141,8 +164,10 @@ const Register = () => {
          </div>
         </div>
         
-      </div>
-    )
-  };
+      </div>     
+      </>
+    );
+  }
+}
 
 export default Register;
