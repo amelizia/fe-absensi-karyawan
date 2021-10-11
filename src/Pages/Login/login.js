@@ -1,6 +1,5 @@
 import React, { Component, useState }  from "react";
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Cookies from "js-cookie";
 
 class Login extends Component {
   constructor(props) {
@@ -31,10 +30,8 @@ class Login extends Component {
 
     fetch("https://ipe8-worker-attendance-be.herokuapp.com/api/auth/login", {
       method: "POST",
-      // mode:"no-cors",
       headers: { 
         'Content-type': 'application/json; charset=UTF-8',
-        // 'Access-Control-Allow-Origin':'*', 
       },
       body: JSON.stringify(SignIn),
     })
