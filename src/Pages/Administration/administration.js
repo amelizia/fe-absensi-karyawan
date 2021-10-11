@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../../Components/side-navbar';
-import Topbar from '../../Components/top-navbar';
+import NavbarAdmin from '../../Components/side-navbar-admin';
+import TopbarAdmin from '../../Components/top-navbar-admin';
 import Admin from '../../Components/adminprofile';
 import AttendStamp  from './attendstamp'
 
@@ -9,10 +9,10 @@ const Administration = () => {
         <div className="content">
            {/* Layout for side menu */}
            <div className=" md:contents hidden">
-                <Navbar />
+                <NavbarAdmin />
             </div>
             <div className="sm:contents">
-                <Topbar />
+                <TopbarAdmin />
             </div>
         {/* Layout for Dashboard */}
         <div className="flex flex-col h-screen bg-whi-custom-1 ">

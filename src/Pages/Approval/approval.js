@@ -1,19 +1,19 @@
 import React from 'react';
-import Navbar from '../../Components/side-navbar';
-import Topbar from '../../Components/top-navbar';
+import NavbarAdmin from '../../Components/side-navbar-admin';
+import TopbarAdmin from '../../Components/top-navbar-admin';
 import Admin from '../../Components/adminprofile';
 import ApproveStamp from './approvestamp'
 
 const Approval = () => {
     return (
-        <div className="content">
-           {/* Layout for side menu */}
-           <div className=" md:contents hidden">
-                <Navbar />
-            </div>
-            <div className="sm:contents">
-                <Topbar />
-            </div>
+      <div className="content">
+      {/* Layout for side menu */}
+      <div className=" md:contents hidden">
+           <NavbarAdmin />
+       </div>
+       <div className="sm:contents">
+           <TopbarAdmin />
+       </div>
         {/* Layout for Dashboard */}
         <div className="flex flex-col h-screen bg-whi-custom-1 ">
             <div className="mt-6 ml-6 font-bold"> 
