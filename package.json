@@ -21,7 +21,7 @@
     "google-maps-react": "^2.0.6",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "pagination": "github:react-bootstrap/Pagination",
     "path": "^0.12.7",
     "postcss": "^7.0.36",
@@ -42,7 +42,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
